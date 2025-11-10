@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -226,7 +227,8 @@
             color: white;
             text-align: center;
             padding: 150px 2rem 100px;
-            margin-top: 70px; /* Account for fixed nav */
+            margin-top: 70px;
+            /* Account for fixed nav */
         }
 
         .hero h1 {
@@ -380,6 +382,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -428,6 +431,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav>
@@ -471,7 +475,8 @@
     <section class="hero">
         <div class="container">
             <h1>Computer Science Resources</h1>
-            <p>Essential study materials for B.Tech AI & ML Computer Science modules. Download PDFs and kickstart your programming journey.</p>
+            <p>Essential study materials for B.Tech AI & ML Computer Science modules. Download PDFs and kickstart your
+                programming journey.</p>
             <a href="index.html#subjects" class="btn">Back to Subjects</a>
         </div>
     </section>
@@ -491,12 +496,32 @@
                     </li>
                 </ul>
             </div>
+        </div>
+        <div class="module-grid">
             <div class="module-card">
                 <h3>Other Notes</h3>
                 <ul>
                     <li>
-                        <a href="cs1.pdf">Python Notes</a>
+                        <a href="cs1.pdf">PYTHON Notes</a>
                         <button class="download-btn" onclick="downloadPDF('cs1.pdf')">
+                            <i class="fas fa-download"></i> 📘 Download
+                        </button>
+                    </li>
+                    <li>
+                        <a href="cs2.pdf">JAVA Notes</a>
+                        <button class="download-btn" onclick="downloadPDF('cs2.pdf')">
+                            <i class="fas fa-download"></i> 📘 Download
+                        </button>
+                    </li>
+                    <li>
+                        <a href="cs3.pdf">120 ADVANCED PYTHON INTERVIEW QUESTIONS</a>
+                        <button class="download-btn" onclick="downloadPDF('cs3.pdf')">
+                            <i class="fas fa-download"></i> 📘 Download
+                        </button>
+                    </li>
+                    <li>
+                        <a href="cs4.pdf">75 DSA Questions from Leet-Code</a>
+                        <button class="download-btn" onclick="downloadPDF('cs4.pdf')">
                             <i class="fas fa-download"></i> 📘 Download
                         </button>
                     </li>
@@ -504,6 +529,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer>
