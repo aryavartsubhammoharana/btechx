@@ -4,39 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTech Study Hub - Empowering Engineering Minds</title>
-    <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>BTechX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
-        /* CSS Variables for Light Mode (White + Blue + Green) */
         :root {
-            --primary-blue: #2196F3;
-            --primary-green: #4CAF50;
-            --secondary-green: #45a049;
-            --bg-light: #ffffff;
-            --text-dark: #333;
-            --text-light: #666;
-            --card-bg: #f8f9fa;
-            --border-radius: 12px;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --gradient: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
-            --nav-bg: var(--gradient);
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #7209b7;
+            --text: #f8f9fa;
+            --bg: #0f0f1e;
+            --card: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #4361ee, #3f37c9);
         }
 
-        /* CSS Variables for Dark Mode (Black + Blue + Red) */
-        .dark {
-            --primary-blue: #2196F3;
-            --primary-red: #f44336;
-            --bg-light: #121212;
-            --text-dark: #e0e0e0;
-            --text-light: #b0b0b0;
-            --card-bg: #1e1e1e;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            --gradient: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
-            --nav-bg: linear-gradient(135deg, #0d1117, var(--primary-blue));
-        }
-
-        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -44,153 +27,176 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
 
-        /* Navigation Bar */
-        nav {
-            background: var(--nav-bg);
-            padding: 1rem 0;
+        /* Floating Particles */
+        .particles {
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            transition: background 0.3s ease;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        nav .container {
-            max-width: 1200px;
+        .particle {
+            position: absolute;
+            background: rgba(67, 97, 238, 0.2);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.2rem 0;
+            background: rgba(15, 15, 30, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4361ee, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-green);
-            /* Green in light, but in dark it will be overridden if needed */
-        }
-
-        .dark .nav-links a:hover {
-            color: var(--primary-red);
-        }
-
-        .dark-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .dark-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* Mobile Hamburger Button */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
+            position: relative;
             transition: 0.3s;
         }
 
-        /* Mobile Sidebar */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -8px;
+            left: 50%;
+            background: #4361ee;
+            transition: 0.4s;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Mobile Sidebar - BEAUTIFUL VERSION */
         .mobile-sidebar {
             position: fixed;
-            top: 70px;
-            left: 0;
-            width: 250px;
-            height: calc(100vh - 70px);
-            background: var(--nav-bg);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
+            top: 0;
+            left: -100%;
+            width: 320px;
+            height: 100vh;
+            background: rgba(10, 10, 25, 0.98);
+            backdrop-filter: blur(30px);
+            padding: 100px 2rem 2rem;
+            transition: left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             z-index: 999;
-            padding-top: 2rem;
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
         }
 
         .mobile-sidebar.active {
-            transform: translateX(0);
-        }
-
-        .mobile-sidebar .nav-links {
-            flex-direction: column;
-            gap: 1rem;
-            padding: 0 1rem;
-        }
-
-        .mobile-sidebar .nav-links a {
-            display: block;
-            padding: 0.5rem 0;
-            font-size: 1.1rem;
-        }
-
-        /* Sidebar Dark Mode Toggle Styling */
-        .mobile-sidebar .dark-toggle {
-            width: 100%;
-            text-align: left;
-            padding: 1rem;
-            background: none;
-            border: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: auto;
-            position: absolute;
-            bottom: 0;
             left: 0;
         }
 
-        .mobile-sidebar .dark-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: none;
+        .mobile-sidebar .logo-mobile {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4361ee, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3rem;
+            text-align: center;
         }
 
-        .mobile-sidebar .dark-toggle i {
-            font-size: 1.2rem;
+        .mobile-sidebar ul {
+            list-style: none;
+        }
+
+        .mobile-sidebar ul li {
+            margin: 1.5rem 0;
+        }
+
+        .mobile-sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .mobile-sidebar ul li a:hover {
+            background: rgba(67, 97, 238, 0.3);
+            transform: translateX(10px);
+        }
+
+        .mobile-sidebar ul li a i {
+            width: 30px;
+            text-align: center;
         }
 
         .mobile-overlay {
@@ -199,10 +205,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: 0.4s;
             z-index: 998;
         }
 
@@ -211,323 +217,250 @@
             visibility: visible;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            background: var(--gradient);
-            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 150px 2rem 100px;
-            margin-top: 70px;
-            /* Account for fixed nav */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 4.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #fff, #ddd6fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease 0.2s both;
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
         }
 
-        .btn {
-            display: inline-block;
+        .btn-explore {
+            padding: 16px 50px;
             background: white;
-            color: var(--primary-blue);
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
+            color: #4361ee;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(67, 97, 238, 0.4);
+            transition: 0.4s;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            color: var(--primary-green);
+        .btn-explore:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(67, 97, 238, 0.6);
         }
 
-        .dark .btn:hover {
-            color: var(--primary-red);
-        }
-
-        /* Subjects Section */
+        /* Subjects */
         .subjects {
-            padding: 4rem 2rem;
-            max-width: 1200px;
+            padding: 10rem 2rem;
+            max-width: 1400px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-dark);
+            font-size: 3.2rem;
+            margin-bottom: 5rem;
+            background: linear-gradient(90deg, #4361ee, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
         }
 
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .subject-card {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        .subject-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(67, 97, 238, 0.3);
         }
 
-        .card i {
-            font-size: 4rem;
+        .subject-card i {
+            font-size: 4.5rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .card p {
-            color: var(--text-light);
             margin-bottom: 1.5rem;
         }
 
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .dark footer {
-            background: #0d1117;
-        }
-
-        .social-icons {
+        .subject-card h3 {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
-        .social-icons a {
+        .subject-card p {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .card-btn {
+            padding: 14px 40px;
+            background: var(--gradient);
             color: white;
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .social-icons a:hover {
-            color: var(--primary-green);
+        .card-btn:hover {
+            transform: scale(1.1);
         }
 
-        .dark .social-icons a:hover {
-            color: var(--primary-red);
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links.desktop {
+            .nav-links {
                 display: none;
             }
 
             .hamburger {
-                display: flex;
-            }
-
-            .dark-toggle.nav-toggle {
-                display: none;
+                display: block;
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 3rem;
             }
 
-            .cards-grid {
-                grid-template-columns: 1fr;
+            .hero p {
+                font-size: 1.1rem;
             }
 
-            /* Ensure sidebar doesn't affect body scroll */
-            body.menu-open {
-                overflow: hidden;
+            .section-title {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
+
+    <div class="particles" id="particles"></div>
+
+    <!-- Navbar -->
     <nav>
-        <div class="container">
+        <div class="nav-container">
             <a href="#" class="logo">BTech Study Hub</a>
-            <ul class="nav-links desktop">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#subjects">Subjects</a></li>
-                <li><a href="syllabus.html">Syllabus</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button class="hamburger" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <button class="dark-toggle nav-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
-                <i class="fas fa-moon"></i>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#subjects">Subjects</a>
+                <a href="syllabus.html">Syllabus</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <button class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile Sidebar -->
+    <!-- Mobile Sidebar (Beautiful) -->
     <div class="mobile-sidebar" id="mobileSidebar">
-        <ul class="nav-links">
-            <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
-            <li><a href="#subjects" onclick="closeMobileMenu()">Subjects</a></li>
-            <li>
-                <a href="syllabus.html" onclick="closeMobileMenu()">Syllabus</a>
-            </li>
-            <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
-            <li><a href="contact.html" onclick="closeMobileMenu()">Contact</a></li>
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+            <li><a href="syllabus.html"><i class="fas fa-file-alt"></i> Syllabus</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
-        <button class="dark-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
-            <i class="fas fa-moon"></i>
-            <span>Theme Mode</span>
-        </button>
     </div>
+    <div class="mobile-overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div>
             <h1>Empower Your Engineering Journey</h1>
-            <p>"Success is not the absence of obstacles, but the courage to push through them." – Stay focused, learn
-                relentlessly, and build the future you envision.</p>
-            <a href="#subjects" class="btn">Get Started</a>
+            <p>"Success is not the absence of obstacles, but the courage to push through them." – Stay focused, learn relentlessly, and build the future you envision.</p>
+            <button class="btn-explore"
+                onclick="document.querySelector('#subjects').scrollIntoView({behavior:'smooth'})">
+                Explore Resources 🚀
+            </button>
         </div>
     </section>
 
-    <!-- Subjects Section -->
-    <section id="subjects" class="subjects">
+    <!-- Subjects -->
+    <section class="subjects" id="subjects">
         <h2 class="section-title">Subjects</h2>
         <div class="cards-grid">
-            <div class="card">
+            <div class="subject-card">
                 <i class="fas fa-laptop-code"></i>
-                <h3>Computer Science (C.S)</h3>
+                <h3>Computer Science</h3>
                 <p>Here You get the study materials of Computer Science(PPS)</p>
-                <a href="cse.html" class="btn">View Materials</a>
+                <a href="cse.html"><button class="card-btn">View Materials</button></a>
             </div>
-            <div class="card">
-                <i class="fas fa-calculator"></i>
+            <div class="subject-card">
+                <i class="fas fa-square-root-variable"></i>
                 <h3>Mathematics</h3>
                 <p>Here you get the study materials of Mathematics.</p>
-                <a href="mathematics.html" class="btn">View Materials</a>
+                <a href="mathematics.html"><button class="card-btn">View Materials</button></a>
             </div>
-            <div class="card">
+            <div class="subject-card">
                 <i class="fas fa-bolt"></i>
-                <h3>Basics of Electrical Engineering</h3>
+                <h3>Basic Electrical Engg.</h3>
                 <p>Here you get the study materials of B.E.E.</p>
-                <a href="bee.html" class="btn">View Materials</a>
-
+                <a href="bee.html"><button class="card-btn">View Materials</button></a>
             </div>
-            <div class="card">
-                <i class="fas fa-cogs"></i>
+            <div class="subject-card">
+                <i class="fas fa-atom"></i>
                 <h3>Physics</h3>
                 <p>Here You get the study materials of Physics.</p>
-                <a href="physics.html" class="btn">View Materials</a>
+                <a href="physics.html"><button class="card-btn">View Materials</button></a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/kataktoka.c0m"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
-        <p>&copy; 2025 C.V. Raman Global University | Made with 💚 by AI/ML Students</p>
+        <p>&copy; 2025 C.V. Raman Global University | Made with 💜 by AI/ML Group 9</p>
     </footer>
 
     <script>
-        // Dark Mode Toggle
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark');
-            const icons = document.querySelectorAll('.dark-toggle i');
-            icons.forEach(icon => {
-                icon.classList.toggle('fa-moon');
-                icon.classList.toggle('fa-sun');
-            });
-            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            document.getElementById('mobileSidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
         }
 
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const sidebar = document.getElementById('mobileSidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
+        // Floating Particles
+        const pContainer = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            p.style.width = p.style.height = Math.random() * 10 + 3 + 'px';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDelay = Math.random() * 20 + 's';
+            p.style.animationDuration = 15 + Math.random() * 20 + 's';
+            pContainer.appendChild(p);
         }
-
-        function closeMobileMenu() {
-            const sidebar = document.getElementById('mobileSidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-
-        // Load Dark Mode Preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark');
-            const icons = document.querySelectorAll('.dark-toggle i');
-            icons.forEach(icon => icon.classList.replace('fa-moon', 'fa-sun'));
-        }
-
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                closeMobileMenu(); // Close sidebar on link click
-            });
-        });
     </script>
 </body>
 
